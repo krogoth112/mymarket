@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="user">
+	<typeAlias alias="UserVo" type="com.bit.mymarket.vo.UserVo" />
+	<select id="login" parameterClass="UserVo" resultClass="UserVo">
+		<![CDATA[
+			select NO, PHONE_NUMBER as phoneNumber, PASSWORD, USER_NAME as userName, GENDER, EMAIL, REG_DATE, MEMBER_TYPE
+			from MEMBER
+			where MEMBER.PHONE_NUMBER=#phoneNumber# 
+			and MEMBER.PASSWORD=#password#
+		]]>
+	</select>
+</sqlMap>
