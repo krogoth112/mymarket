@@ -19,13 +19,18 @@ import com.bit.mymarket.vo.UserVo;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
+	int s_page;
+	int c_m_page;
+
+	public BoardController() {
+		s_page = 1;
+		c_m_page = 10;
+	}
 
 	class page {
-		final static int pagePerboardCNT=10;
+		final static int pagePerboardCNT = 10;
 		int skip;
 		int t_page;
-		int s_page;
-		int c_m_page;
 
 		public int countrow() {
 			return (int) Math.ceil((boardService.countrow() / (double) 6));
@@ -40,23 +45,34 @@ public class BoardController {
 	public String list(@PathVariable("no") Integer c_page,
 			@RequestParam(required = false) String kwd, Model model) {
 		int skip = (c_page - 1) * page.pagePerboardCNT;
-		List<BoardVo> list = kwd == null ? boardService.list(skip, page.pagePerboardCNT)
-				: boardService.list(skip, 10, kwd);
+		List<BoardVo> list = kwd == null ? boardService.list(skip,
+				page.pagePerboardCNT) : boardService.list(skip, 10, kwd);
 		System.out.println("kwd " + kwd);
 		// List<BoardVo> list = boardService.list(skip, 6);
-		int t_page = (int) Math.ceil((boardService.countrow() / (double) page.pagePerboardCNT));
-		int s_page = (c_page== 1)||(c_page<10)  ? 1 : (page.pagePerboardCNT/c_page)*10;
-		int c_m_page = (s_page-1)+page.pagePerboardCNT;
+		int t_page = (int) Math
+				.ceil((boardService.countrow() / (double) page.pagePerboardCNT));
+
 		
+		if (c_page < 11) {
+			c_m_page = 10;
+			s_page = 1;
+		}
+
+		if (c_page % 10 == 1 && c_page > 10) {
+			System.out.println("c_page % 10 == 1 !!!");
+			s_page = c_page;
+			c_m_page = s_page + 9;
 			
-		
-		
-		
-		
+			if (c_m_page > t_page){
+				System.out.println("c_m_page>t_page !! ");
+				c_m_page = t_page;
+			}
+		}
 
 		System.out.println("시작페이지는 " + s_page);
 		System.out.println("현재 페이지는(c_page) " + c_page);
 		System.out.println("현재 표시할 맥스 페이지는  (c_m_page)" + c_m_page);
+		System.err.println("t_page : " + t_page);
 		model.addAttribute("c_page", c_page);
 		model.addAttribute("s_page", s_page);
 		model.addAttribute("c_m_page", c_m_page);
@@ -113,8 +129,8 @@ public class BoardController {
 	public String addReply(@PathVariable Long no,
 			@RequestParam(required = false) String content, HttpSession session) {
 
-		if (session == null) {
-			return "redirect:/board/1";
+		if (session.getAttribute("authUser") == null) {
+			return "redirect:/user/loginform";
 		}
 		System.out.println("!!!");
 		System.out.println((UserVo) session.getAttribute("authUser"));

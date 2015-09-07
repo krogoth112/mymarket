@@ -46,22 +46,26 @@
 
 				<table class="tbl-page">
 					<tr>
-						<c:if test="${c_page>3 }">
-						<td colspan="5"><a href="/board/1">처음</a> <c:if
-								test="${c_page>1}">
-								<a href="/board/${c_page-1}">이전</a>
-							</c:if> <c:if test="${c_page<=1}">
-								<a href="/board/${c_page}">이전</a>
+						<td colspan="5">
+						<c:if test="${s_page-10 >= 1 }">
+						<a href="/board/${s_page-10}">이전</a>
+						</c:if>
+						 <c:forEach
+								var="i" begin="${s_page }" end="${c_m_page }">
+								<c:if test="${c_page==i}">
+									<a id="m-tcol-p" href="/board/${i}">${i}</a>
 								</c:if>
-							</c:if><c:if test="${c_page<=3 }"><td colspan="5"></c:if> <c:forEach var="i" begin="${s_page }" end="${c_m_page }">
-							<c:if test="${c_page==i}"><a id="m-tcol-p" href="/board/${i}">${i}</a></c:if>
-							<c:if test="${c_page!=i}">
-								<a href="/board/${i}">${i}</a></c:if>
-							</c:forEach> <c:if test="${c_page>=t_page}">
-								<a href="/board/${c_page }">다음</a>
-							</c:if> <c:if test="${c_page<t_page}">
-								<a href="/board/${c_page+1}">다음</a>
-							</c:if> <a href="/board/${t_page}"> 맨끝</a></td>
+								<c:if test="${c_page!=i}">
+									<a href="/board/${i}">${i}</a>
+								</c:if>
+							</c:forEach> 
+							
+							<c:if test="${s_page+10<t_page }">
+							<a href="/board/${s_page+10}">다음</a>
+							</c:if>
+							
+							
+							
 					</tr>
 				</table>
 				<div class="bottom">
