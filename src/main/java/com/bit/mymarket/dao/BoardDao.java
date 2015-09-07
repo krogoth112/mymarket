@@ -15,7 +15,7 @@ import com.bit.mymarket.vo.ReplyVo;
 public class BoardDao {
 
 	@Autowired
-	SqlMapClientTemplate sqlMapClientTemplate;
+	private SqlMapClientTemplate sqlMapClientTemplate;
 
 	@SuppressWarnings("unchecked")
 	public List<BoardVo> getList(int _skip, int _max) {
@@ -92,9 +92,18 @@ public class BoardDao {
 	}
 
 	public ReplyVo getReply(Long no) {
-		System.out.println( " service getReply : "+no);
 		ReplyVo replyVo = (ReplyVo) sqlMapClientTemplate.queryForObject("reply.getreplybyno", no);
-		System.out.println("service getReply : " +replyVo);
+		System.out.println("BoardDao 결과 getReply replyVo : " +replyVo);
 		return replyVo;
+	}
+
+	public void viewCnt(Long no) {
+		// TODO Auto-generated method stub
+		System.out.println("보드 다오 board.viewcount!!! " + no);
+		sqlMapClientTemplate.update("board.viewcount", no);
+	}
+
+	public void addReplyCnt(Long no) {
+		sqlMapClientTemplate.update("board.replycount", no);
 	}
 }

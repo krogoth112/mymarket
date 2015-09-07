@@ -16,7 +16,8 @@ public class BoardVo {
 	private String userName;
 	private Long viewCnt;
 	private String regDate;
-	private Integer replycount;
+	private Integer replyCnt;
+	
 	public Long getNo() {
 		return no;
 	}
@@ -59,18 +60,18 @@ public class BoardVo {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public Integer getReplycount() {
-		return replycount;
-	}
-	public void setReplycount(Integer replycount) {
-		this.replycount = replycount;
-	}
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", title=" + title + ", content="
 				+ content + ", userNo=" + userNo + ", userName=" + userName
 				+ ", viewCnt=" + viewCnt + ", regDate=" + regDate
-				+ ", replycount=" + replycount + "]";
+				+ ", replyCnt=" + replyCnt + "]";
+	}
+	public Integer getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(Integer replyCnt) {
+		this.replyCnt = replyCnt;
 	}
 	
 	

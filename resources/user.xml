@@ -5,10 +5,10 @@
 	<typeAlias alias="UserVo" type="com.bit.mymarket.vo.UserVo" />
 	<select id="login" parameterClass="UserVo" resultClass="UserVo">
 		<![CDATA[
-			select NO, PHONE_NUMBER as phoneNumber, PASSWORD, USER_NAME as userName, GENDER, EMAIL, REG_DATE, MEMBER_TYPE
+			select NO as no, PHONE_NUMBER as phoneNumber, PASSWORD as password, USER_NAME as name, GENDER as gender, EMAIL as email, REG_DATE as regDate, MEMBER_TYPE as memberType
 			from MEMBER
-			where MEMBER.PHONE_NUMBER=#phoneNumber# 
-			and MEMBER.PASSWORD=#password#
+			where EMAIL=#email# 
+			and PASSWORD=#password#
 		]]>
 	</select>
 </sqlMap>

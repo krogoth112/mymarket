@@ -33,59 +33,52 @@
 						</td>
 					</tr>
 				</table>
-				<br>
-				<h3>
-					댓글목록
-					</h2>
-					<br>
+				<div>
+					<h3>댓글목록</h3>
+
 
 					<c:forEach var="reply" items="${replyList}">
 						<table class="tb-reply">
 							<tr>
-								<c:if test="${reply.depth==0}">
+								<%-- <c:if test="${reply.depth==0}">
 									<td><img src="/assets/css/images/gc_img.gif"></td>
-								</c:if>
+								</c:if> --%>
 								<td class="" style="padding-left:${reply.depth*30}px"><input
-									type="hidden" name="articleNo" value=""><strong>${reply.userName}</strong></td>
-
+									type="hidden" name="articleNo" value=""><td><img src="/assets/css/images/gc_img.gif">
+								${reply.userName}
 								<td>${reply.regDate}</td>
 								<td><c:if test="${reply.userNo == authUser.no }">
-										<a
-											href="/board/deletereply/${reply.no}?articleNo=${reply.boardNo}"><img
-											src="/assets/images/recycle.png"></a>
-									</c:if> <c:if test="${not empty authUser}">
-										<td><a
-											href="/board/replyreplyform?replyNo=${reply.no}&articleNo=${reply.boardNo}"><button
-													style="background-color: rgba(58, 137, 201, 0.3)">답글</button></a></td>
+										<a href="/board/deletereply/${reply.no}?articleNo=${reply.boardNo}"><img src="/assets/images/recycle.png"></a>
+									</c:if> 
+									<c:if test="${not empty authUser}">
+										<td><a href="/board/replyreplyform?replyNo=${reply.no}&articleNo=${reply.boardNo}">답글</a></td>
 									</c:if>
 							</tr>
-							<tr>
-								<td style="padding-left:${reply.depth*30}px" colspan="2"
-									valign="top">${reply.content}</td>
-							</tr>
-
-
 						</table>
+						<div id="junki" style="padding-left:${reply.depth*30}px">${reply.content}
+						</div>
+
+
 					</c:forEach>
-
-					<form class="board-reply_form" action="/board/addreply/${vo.no}"
-						method="post">
-						<table>
-							<tr>
-								<td><textarea cols="75" rows="10" maxlength="1000"
-										name="content"></textarea></td>
-							</tr>
-							<tr>
-								<td align="right"><input type="submit" value="답글"></td>
-							</tr>
-						</table>
-					</form>
-					<div class="bottom">
-						<a href="/board/1">글목록</a>
-						<c:if test="${vo.userNo==authUser.no}">
-							<a href="/board/modifyform/${no}">글수정</a>
-						</c:if>
-					</div>
+				</div>
+				<form class="board-reply_form" action="/board/addreply/${vo.no}"
+					method="post">
+					<table>
+						<tr>
+							<td><textarea cols="75" rows="10" maxlength="1000"
+									name="content"></textarea></td>
+						</tr>
+						<tr>
+							<td align="right"><input type="submit" value="답글"></td>
+						</tr>
+					</table>
+				</form>
+				<div class="bottom">
+					<a href="/board/1">글목록</a>
+					<c:if test="${vo.userNo==authUser.no}">
+						<a href="/board/modifyform/${no}">글수정</a>
+					</c:if>
+				</div>
 			</div>
 
 		</div>

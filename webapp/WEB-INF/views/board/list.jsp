@@ -32,7 +32,7 @@
 					<c:forEach var="vo" items="${list }" varStatus="status">
 						<tr>
 							<td>${vo.no}</td>
-							<td><a href="/board/view/${vo.no}">${vo.title }</a></td>
+							<td><a href="/board/view/${vo.no}">${vo.title } <c:if test="${ vo.replyCnt>=1 }">[${ vo.replyCnt}]</c:if></a></td>
 							<td>${vo.userName }</td>
 							<td>${vo.viewCnt }</td>
 							<td>${vo.regDate }</td>

@@ -26,7 +26,6 @@ public class UserDao {
 				2);
 		map.put("email", phoneNumber);
 		map.put("password", password);*/
-		System.err.println(userVo.getPhoneNumber()+" : "+userVo.getPassword());
 		UserVo vo = (UserVo) sqlMapClientTemplate.queryForObject(
 				"user.login", userVo);
 

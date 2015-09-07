@@ -22,7 +22,7 @@ import com.bit.mymarket.vo.UserVo;
 public class UserController {
 
 	@Autowired
-	UserService userService;
+	private UserService userService;
 
 	@RequestMapping("/joinform")
 	public String joinform() {
@@ -47,13 +47,12 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login(HttpSession session, @ModelAttribute UserVo userVo) {
 		System.out.println("!!!");
-		System.out.println(userVo.getPhoneNumber());
-		System.out.println(userVo.getPassword());
+		System.out.println(userVo);
 		UserVo vo = userService.login(userVo);
 		if (vo == null) {
 			return "redirect:/user/loginform";
 		}
-		System.out.println(vo);
+		System.out.println("이 데이터로 로그인 할꺼야 = " + vo);
 		session.setAttribute("authUser", vo);
 		System.out.println(vo);
 		return "redirect:/";
@@ -100,11 +99,11 @@ public class UserController {
 	
 	@RequestMapping("/checkname")
 	@ResponseBody
-	public ModelAndView checkname(@RequestParam("name") String name) {
+	public ModelAndView checkname(@RequestParam("UserName") String UserName) {
 		
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("name", name);
+		mv.addObject("UserName", UserName);
 		return mv;
 	}
 

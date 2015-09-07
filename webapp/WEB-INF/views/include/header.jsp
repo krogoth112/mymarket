@@ -8,7 +8,7 @@
 </h1>
 <ul>
 	<c:choose>
-		<c:when test="${empty authUser.name}">
+		<c:when test="${empty authUser}">
 			<li><a href="/user/loginform">로그인</a>
 			<li>
 			<li><a href="/user/joinform">회원가입</a>
@@ -19,7 +19,7 @@
 			<li>
 			<li><a href="/user/logout">로그아웃</a>
 			<li>
-			<li>${authUser.name}님안녕하세요 ^^<font color="#f00">♥</font></li>
+			<li>${authUser.email}님안녕하세요 ^^<font color="#f00">♥</font></li>
 		</c:otherwise>
 	</c:choose>
 

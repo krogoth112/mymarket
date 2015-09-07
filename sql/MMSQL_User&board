@@ -60,17 +60,22 @@ SELECT *
   FROM MEMBER m;
 
 
-CREATE TABLE board_commnity
+CREATE TABLE BOARD_COMMNITY
 (
-   NO          NUMBER (7) NOT NULL,
-   title       VARCHAR2 (100),
-   content     VARCHAR2 (2000),
-   reg_date    DATE,
-   hit_count   NUMBER (30),
-   USER_ID     NUMBER (7),
+   NO           NUMBER (7),
+   TITLE        VARCHAR2 (100),
+   CONTENT      VARCHAR2 (2000),
+   REG_DATE     DATE,
+   VIEW_COUNT   NUMBER (30) DEFAULT 0,
+   USER_NO      NUMBER (7),
+   USER_NAME    VARCHAR2 (50),
+   REPLY_COUNT  NUMBER (5) DEFAULT 0,
    PRIMARY KEY (NO)
 );
-
+alter table BOARD_COMMNITY  add(REPLY_COUNT number(5) DEFAULT 0);
+SELECT * FROM BOARD_COMMNITY b;
+INSERT INTO BOARD_COMMNITY (NO, TITLE, CONTENT, REG_DATE, VIEW_COUNT, USER_NO, USER_NAME, REPLY_COUNT) 
+VALUES(no, 'title', 'content', reg_date, view_count, user_no, 'user_name', reply_count)
 DROP TABLE BOARD_COMMNITY;
 
 CREATE SEQUENCE seq_board_commnity START WITH 1 INCREMENT BY 1;

@@ -12,15 +12,16 @@ import com.bit.mymarket.vo.UserVo;
 public class UserService {
 
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
 
 	public void join(UserVo userVo) {
 		userDao.insert(userVo);
 	}
 
 	public UserVo login(UserVo userVo) {
+		System.out.println("before UserService : " + userVo);
 		UserVo vo = userDao.get(userVo);
-		System.out.println("UserService : " + vo);
+		System.out.println("after UserService : " + vo);
 		return vo;
 	}
 

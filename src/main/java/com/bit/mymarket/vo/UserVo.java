@@ -3,7 +3,7 @@ package com.bit.mymarket.vo;
 public class UserVo {
 	private Long no;
 	private String phoneNumber;
-	private String userName;
+	private String name;
 	private String email;
 	private String password;
 	private String gender;
@@ -20,11 +20,11 @@ public class UserVo {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public String getUserName() {
-		return userName;
+	public String getname() {
+		return name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setname(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
@@ -53,7 +53,7 @@ public class UserVo {
 	@Override
 	public String toString() {
 		return "UserVo [no=" + no + ", phoneNumber=" + phoneNumber
-				+ ", userName=" + userName + ", email=" + email + ", password="
+				+ ", name=" + name + ", email=" + email + ", password="
 				+ password + ", gender=" + gender + ", memberType="
 				+ memberType + "]";
 	}

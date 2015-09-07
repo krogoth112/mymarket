@@ -22,8 +22,8 @@
 					<c:if test="${param.error =='true'}">
 					<p class="error">이메일과 비밀번호가 일치하지 않습니다.</p>
 					</c:if>
-					<label class="block-label" for="phoneNumber">ID</label> <input
-						id="phoneNumber" name="phoneNumber" hint="휴대전화번호" type="text" > <label
+					<label class="block-label" for="email">email</label> <input
+						id="email" name="email" hint="휴대전화번호" type="text" > <label
 						class="block-label">패스워드</label> <input name="password"
 						type="password"> <input type="submit" value="로그인">
 

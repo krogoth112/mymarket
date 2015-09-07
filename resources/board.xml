@@ -11,37 +11,76 @@
 		<result column="VIEW_COUNT" property="viewCnt" />
 		<result column="user_no" property="userNo" />
 		<result column="user_name" property="userName" />
+		<result column="reply_count" property="replyCnt" />
 	</resultMap>
 
 	<!-- <select id="search" resultMap="resultMapList"> <![CDATA[ SELECT * from 
-		BOARD where content=#content#, title=#title# ]]> </select> <insert id="insert" 
-		parameterClass="BoardVo"> <![CDATA[ insert into BOARD (NO, TITLE, CONTENT, 
-		MEMBER_NO, MEMBER_NAME, REG_DATE) VALUES (board_seq.nextval, #title# , #content#, 
-		#memberNo#, #memberName#, sysdate) ]]> </insert> <delete id="delete" parameterClass="java.lang.Long"> 
-		<![CDATA[ delete from BOARD where no=#no# ]]> </delete>  <update id="update" parameterClass="BoardVo"> 
-		<![CDATA[ UPDATE board SET title=#title#, content=#content# WHERE no=#no# 
-		]]> </update> <select id="getbyno" parameterClass="java.lang.Long" resultMap="resultMapList"> 
-		<![CDATA[ SELECT no, title, content, member_no, member_name, view_cnt, TO_CHAR(reg_date, 
-		'HH12:MI') as reg_date FROM board where no=#no# ]]> </select> 
-		
-		 <select id="listkwd" resultMap="resultMapList" parameterClass="java.lang.String"> 
-		<![CDATA[ SELECT no, title, content, member_no, member_name, view_cnt, TO_CHAR(reg_date, 
-		'YY-MM-DD HH12:MI') as reg_date from board where title LIKE '%' ||#kwd# || 
-		'%' or content LIKE '%' ||#kwd# || '%' order by no desc ]]> </select> -->
+		BOARD where content=#content#, title=#title# ]]> </select> <select id="listkwd" 
+		resultMap="resultMapList" parameterClass="java.lang.String"> <![CDATA[ SELECT 
+		no, title, content, member_no, member_name, view_cnt, TO_CHAR(reg_date, 'YY-MM-DD 
+		HH12:MI') as reg_date from board where title LIKE '%' ||#kwd# || '%' or content 
+		LIKE '%' ||#kwd# || '%' order by no desc ]]> </select> -->
 	<select id="list" resultMap="resultMapList">
 		<![CDATA[
-		SELECT NO, TITLE,content, TO_CHAR(reg_date, 'HH12:MI') as reg_date, VIEW_COUNT, User_no, USER_NAME 
-		FROM BOARD_COMMNITY
-		order by no desc
+		
+			SELECT NO, TITLE,content, TO_CHAR(reg_date, 'HH12:MI') as reg_date, VIEW_COUNT, User_no, USER_NAME, reply_count 
+			FROM BOARD_COMMNITY
+			order by no desc
 		]]>
 	</select>
-	
-	<select id="count" resultClass="java.lang.Integer" > <![CDATA[ SELECT count(*) from BOARD_COMMNITY ]]> 
-		</select>
-		
-		<select id="view" 
-		parameterClass="java.lang.Long" resultMap="resultMapList"> <![CDATA[ select 
-		* from BOARD_COMMNITY where no=#no# ]]> </select>
 
+	<select id="count" resultClass="java.lang.Integer"> 
+		<![CDATA[ 
+			SELECT count(*) from BOARD_COMMNITY 
+		]]>
+	</select>
+
+	<select id="view" parameterClass="java.lang.Long" resultMap="resultMapList"> 
+		<![CDATA[ 
+		select NO, TITLE, CONTENT, REG_DATE, VIEW_COUNT, USER_NO, USER_NAME, reply_count 
+		from BOARD_COMMNITY 
+		where no=#no# 
+		]]>
+	</select>
+
+	<delete id="delete" parameterClass="java.lang.Long"> 
+		<![CDATA[ 
+			delete from BOARD_COMMNITY 
+			where no=#no# 
+		]]>
+	</delete>
+	<insert id="insert" parameterClass="BoardVo"> 
+		<![CDATA[ 
+			insert into BOARD_COMMNITY (NO, TITLE, CONTENT, user_NO, user_NAME, REG_DATE) 
+			VALUES (SEQ_BOARD_COMMNITY.nextval, #title# , #content#, #userNo#, #userName#, sysdate) 
+		]]>
+	</insert>
+	<update id="viewcount" parameterClass="java.lang.Long"> 
+	<![CDATA[ 
+		UPDATE BOARD_COMMNITY SET VIEW_COUNT=VIEW_COUNT+1
+ 		 where no=#no#
+	]]>
+
+	</update>
+
+	<update id="update" parameterClass="BoardVo"> 
+	<![CDATA[ UPDATE BOARD_COMMNITY SET title=#title#, content=#content# 
+		WHERE no=#no# ]]>
+	</update>
+	
+	<update id="replycount" parameterClass="java.lang.Long"> 
+		<![CDATA[ 
+			UPDATE BOARD_COMMNITY
+			SET reply_count = reply_count +1 
+			WHERE no = #no#
+		]]>
+	</update>
+	<select id="getbyno" parameterClass="java.lang.Long" resultMap="resultMapList"> 
+		<![CDATA[ 
+		SELECT NO, TITLE, CONTENT, REG_DATE, VIEW_COUNT, USER_NO, USER_NAME, reply_count 
+		FROM BOARD_COMMNITY 
+		where no=#no# 
+	]]>
+	</select>
 </sqlMap>
 

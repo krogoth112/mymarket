@@ -12,7 +12,7 @@ import com.bit.mymarket.vo.ReplyVo;
 @Service
 public class BoardService {
 	@Autowired
-	BoardDao boardDao;
+	private BoardDao boardDao;
 	
 
 	// public List<BoardVo> list(){
@@ -101,6 +101,16 @@ public class BoardService {
 	public ReplyVo getReply(Long no) {
 		// TODO Auto-generated method stub
 		return boardDao.getReply(no);
+	}
+
+	public void viewcnt(Long no) {
+		// TODO Auto-generated method stub
+		boardDao.viewCnt(no);
+	}
+
+	public void addReplyCnt(Long no) {
+		boardDao.addReplyCnt(no);
+		
 	}
 
 }

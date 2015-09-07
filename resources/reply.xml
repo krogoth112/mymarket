@@ -39,6 +39,26 @@
 		]]>
 
 	</insert>
+	<delete id="delete" parameterClass="java.lang.Long">
+	<![CDATA[
+		delete 
+		from reply
+		where no=#no#
+		]]>
+	</delete>
+	<insert id="replyreply" parameterClass="ReplyVo">
+		<![CDATA[
+		 	insert into reply (NO, BOARD_NO, CONTENT, USER_NO, USER_NAME, REG_DATE, GROUP_NO, ORDER_NO, DEPTH )
+			VALUES(seq_reply.nextval, #boardNo#, #content#, #userNo#, #userName#, sysdate, #groupNo#, #orderNo#, #depth#)
+		]]>
+	</insert>
+	<select id="getreplybyno" resultMap="resultMapList"
+		parameterClass="java.lang.Long">
+	<![CDATA[
+		select * from reply where no=#no#
+	]]>
+	</select>
+	
 <!-- 
 	<select id="getreplybyno" resultMap="resultMapList"
 		parameterClass="java.lang.Long">

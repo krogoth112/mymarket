@@ -122,8 +122,8 @@
 				<form id="join-form" name="join-form" method="post"
 					action="/user/join">
 					<input type="hidden" name="a" value="join"> <label
-						class="block-label" for="name">이름</label> <input id="name"
-						name="name" type="text"> <img id="name-checked"
+						class="block-label" for="name">이름</label> <input id="userName"
+						name="userName" type="text"> <img id="name-checked"
 						src="/assets/images/check.png" style="display: none"> <label
 						class="block-label" for="email">이메일</label> 
 						<input id="email"name="email" type="text"> <input type="button"

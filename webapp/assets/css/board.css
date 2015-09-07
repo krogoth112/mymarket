@@ -8,6 +8,7 @@ a:hover {text-decoration: underline; color:#79B30B}
 
 #board { margin:20px auto;	width:550px; }
 
+div #junki { margin-top:-30px; margin-left:20px; font-size: 10px}
 
 #search_form {
 	width:100%;
