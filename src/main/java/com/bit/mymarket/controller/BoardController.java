@@ -1,7 +1,9 @@
 package com.bit.mymarket.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.bit.mymarket.service.BoardService;
+import com.bit.mymarket.CommandMap;
+import com.bit.mymarket.service.BoardServiceImpl;
 import com.bit.mymarket.vo.BoardVo;
 import com.bit.mymarket.vo.ReplyVo;
 import com.bit.mymarket.vo.UserVo;
@@ -33,7 +37,7 @@ public class BoardController {
 	}
 
 	@Autowired
-	private BoardService boardService;
+	private BoardServiceImpl boardService;
 
 	@RequestMapping("/{no}")
 	public String list(@PathVariable("no") Integer c_page,
@@ -82,24 +86,31 @@ public class BoardController {
 
 	}
 
-	@RequestMapping("/write")
-	public String write(@RequestParam String content, String title,
-			HttpSession session) {
-		System.out.println("!!!!write");
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
+	@RequestMapping("/modifyform/{NO}")
+	public String modifyform(@PathVariable Long no, Model model) {
+		System.out.println("modifyform!!!!!!");
+		model.addAttribute("no", no);
+		return "/board/modify";
 
-		if (authUser == null)
-			return "redirect:/user/loginform";
-		System.out.println("authUser ==== " + authUser);
-		BoardVo boardVo = new BoardVo();
+	}
 
+<<<<<<< HEAD
 		boardVo.setUserNo(authUser.getNo());
 		boardVo.setUserName(authUser.getName());
 		boardVo.setContent(content);
 		boardVo.setTitle(title);
 		boardService.write(boardVo);
+=======
+	@RequestMapping(value = "/write")
+	public ModelAndView insertBoard(CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		System.out.println("!!!!!!write");
+		ModelAndView mv = new ModelAndView("redirect:/board/1");
+		System.out.println(request);
+		boardService.insertBoard(commandMap.getMap(), request);
+>>>>>>> refs/remotes/origin/master
 
-		return "redirect:/board/1";
+		return mv;
 	}
 
 	@RequestMapping("/delete/{no}")
@@ -113,18 +124,20 @@ public class BoardController {
 	}
 
 	@RequestMapping("/view/{no}")
-	public String view(@PathVariable Long no, Model model, HttpSession session) {
+	public String view(@PathVariable Long no, Model model, HttpSession session)
+			throws Exception {
 		System.out.println("!!!!!!!!view");
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if (authUser==null)
+		if (authUser == null)
 			return "redirect:/user/loginform";
-		BoardVo currentboard=boardService.get(no);
-		System.out.println("currentboard======="+currentboard);
-		if(currentboard.getUserNo() != authUser.getNo()){
+		BoardVo currentboard = boardService.get(no);
+		if (currentboard.getUserNo() != authUser.getNo()) {
 			System.out.println("뷰 카운트를 올리자!!!!");
 			boardService.viewcnt(no);
 		}
-			
+		Map<String, Object> map = boardService.fileList(no);
+		boardService.viewcnt(no);
+		model.addAttribute("fileList", map.get("fileList"));
 		model.addAttribute("vo", boardService.view(no));
 		model.addAttribute("replyList", boardService.getReplyList(no));
 
@@ -138,37 +151,33 @@ public class BoardController {
 		if (session.getAttribute("authUser") == null) {
 			return "redirect:/user/loginform";
 		}
-		System.out.println("!!!");
-		System.out.println((UserVo) session.getAttribute("authUser"));
+		// System.out.println("!!!");
+		// System.out.println((UserVo) session.getAttribute("authUser"));
 		UserVo userVo = (UserVo) session.getAttribute("authUser");
 		ReplyVo vo = new ReplyVo();
 		vo.setUserName(userVo.getName());
 		vo.setContent(content);
 		vo.setBoardNo(no);
 		vo.setUserNo(userVo.getNo());
-		System.out.println("저장할 vo의 값 : " + vo);
+		// System.out.println("저장할 vo의 값 : " + vo);
 
 		boardService.addreply(vo);
 		boardService.addReplyCnt(no);
 
 		return "redirect:/board/view/" + no;
-
 	}
 
 	@RequestMapping("/deletereply/{no}")
 	public String deleteReply(@PathVariable Long no,
 			@RequestParam Long articleNo) {
 		boardService.delreply(no);
-
 		return "redirect:/board/view/" + articleNo;
 	}
 
 	@RequestMapping("/replyreplyform")
 	public String replyreplyform(@RequestParam Long replyNo,
 			@RequestParam Long articleNo, Model model) {
-
 		model.addAttribute("replyNo", replyNo);
-		
 		return "/board/replyreplyform";
 	}
 
@@ -184,6 +193,7 @@ public class BoardController {
 		System.out.println("session에서 가져온 유저정보 : " + userVo);
 
 		ReplyVo rereplyVo = new ReplyVo();
+		rereplyVo.setUserName(userVo.getname());
 		rereplyVo.setBoardNo(tatgetReplyVo.getBoardNo());
 		rereplyVo.setContent(replyContent);
 		rereplyVo.setGroupNo(tatgetReplyVo.getGroupNo());
@@ -195,7 +205,7 @@ public class BoardController {
 		boardService.addReReply(rereplyVo);
 
 		model.addAttribute("rereplyVo", rereplyVo);
-		boardService.addReplyCnt(tatgetReplyVo.getBoardNo());//리플카운트 올라감..
+		boardService.addReplyCnt(tatgetReplyVo.getBoardNo());// 리플카운트 올라감..
 		return "redirect:/board/view/" + rereplyVo.getBoardNo();
 	}
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="12" version="2.0">
 <workbenchAdvisor/>
-<window height="768" maximized="true" width="1024" x="2119" y="211">
+<window height="768" maximized="true" width="1024" x="774" y="233">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -37,11 +37,11 @@
 <input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/MM/workspace/mymarket/sql/.project"/>
 <editorState selectionLength="0" selectionOffset="0"/>
 </editor>
-<editor activePart="true" focus="true" id="com.tomato.exerd.editor.DiagramEditor" name="untitled.exerd" partName="untitled.exerd" title="untitled.exerd" tooltip="C:\MM\workspace\mymarket\sql\untitled.exerd" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/MM/workspace/mymarket/sql/untitled.exerd"/>
-</editor>
-<editor id="com.tomato.exerd.editor.DiagramEditor" name="mm.v.1.0.0" partName="mm.v.1.0.0" path="C:/MM/workspace/mymarket/sql/mymarket/mm.v.1.0.0" title="mm.v.1.0.0" tooltip="mymarket/mm.v.1.0.0" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="com.tomato.exerd.editor.DiagramEditor" name="mm.v.1.0.0" partName="mm.v.1.0.0" path="C:/MM/workspace/mymarket/sql/mymarket/mm.v.1.0.0" title="mm.v.1.0.0" tooltip="mymarket/mm.v.1.0.0" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/mymarket/mm.v.1.0.0"/>
+</editor>
+<editor id="com.tomato.exerd.editor.DiagramEditor" name="zigtem_v2.exerd" partName="zigtem_v2.exerd" title="zigtem_v2.exerd" tooltip="C:\MM\workspace\mymarket\sql\zigtem_v2.exerd" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/MM/workspace/mymarket/sql/zigtem_v2.exerd"/>
 </editor>
 </editors>
 <views>
@@ -179,6 +179,8 @@
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/zig/newProject/mymarketv1.0.0.exerd"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/mymarket/mm.v.1.0.0"/>
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/MM/workspace/mymarket/sql/untitled.exerd"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/mymarket/mm.v.1.0.0"/>
+<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/MM/workspace/mymarket/sql/zigtem_v2.exerd"/>
 </editors>
 <item historyLabel=".project" index="0">
 <position/>
@@ -188,7 +190,15 @@
 <item historyLabel="mm.v.1.0.0" index="3"/>
 <item historyLabel="untitled.exerd" index="4"/>
 <item historyLabel="mm.v.1.0.0" index="3"/>
-<item active="true" historyLabel="untitled.exerd" index="4"/>
+<item historyLabel="untitled.exerd" index="4"/>
+<item historyLabel="mm.v.1.0.0" index="5"/>
+<item historyLabel="zigtem_v2.exerd" index="6"/>
+<item historyLabel="untitled.exerd" index="4"/>
+<item historyLabel="mm.v.1.0.0" index="5"/>
+<item historyLabel="zigtem_v2.exerd" index="6"/>
+<item historyLabel="mm.v.1.0.0" index="5"/>
+<item historyLabel="untitled.exerd" index="4"/>
+<item active="true" historyLabel="mm.v.1.0.0" index="5"/>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -206,6 +216,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="zigtem_v2.exerd" tooltip="C:\MM\workspace\mymarket\sql\zigtem_v2.exerd">
+<persistable uri="file:/C:/MM/workspace/mymarket/sql/zigtem_v2.exerd"/>
+</file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="mymarketv1.0.0.exerd" tooltip="C:\zig\newProject\mymarketv1.0.0.exerd">
 <persistable uri="file:/C:/zig/newProject/mymarketv1.0.0.exerd"/>
 </file>

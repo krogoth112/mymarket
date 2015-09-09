@@ -2,6 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="user">
+<<<<<<< HEAD
 <typeAlias alias="UserVo" type="com.bit.mymarket.vo.UserVo" />
 
 <select id="getByIdNo" parameterClass="java.lang.String" resultClass="UserVo">
@@ -21,4 +22,15 @@
 	select * from member where email=#email# and password=#password#
  ]]>
 </select>
+=======
+	<typeAlias alias="UserVo" type="com.bit.mymarket.vo.UserVo" />
+	<select id="login" parameterClass="UserVo" resultClass="UserVo">
+		<![CDATA[
+			select NO as no, PHONE as phoneNumber, PASSWORD as password, NAME as name, GENDER as gender, EMAIL as email, REG_DATE as regDate, MEMBER_TYPE as memberType
+			from MEMBER
+			where EMAIL=#email# 
+			and PASSWORD=#password#
+		]]>
+	</select>
+>>>>>>> refs/remotes/origin/master
 </sqlMap>
