@@ -22,36 +22,36 @@
 	    <legend>회원가입</legend>
 	    <div class="form-group">
 	      <label for="inputEmail" class="col-lg-2 control-label">이메일ID</label>
-	      <div class="col-lg-10">
-	        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+	      <div class="col-lg-8">
+	        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
 	      </div>
 	    </div>
 	     <div class="form-group">
-	      <label for="inputEmail" class="col-lg-2 control-label">중복체크</label>
-	      <div class="col-lg-10">
-	        <input type="button" class="btn btn-primary" value="중복체크">
+	      <label for="emailcheck" class="col-lg-2 control-label"></label>
+	      <div class="col-lg-8">
+	        <input type="button" class="btn btn-default" value="이메일 중복체크">
 	      </div>
 	    </div>
 	    <div class="form-group">
 	      <label for="inputPassword" class="col-lg-2 control-label">비밀번호</label>
-	      <div class="col-lg-10">
+	      <div class="col-lg-8">
 	        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
 	      </div>
 	    </div>
 	    <div class="form-group">
 	      <label for="confirmPassword" class="col-lg-2 control-label">비밀번호확인</label>
-	      <div class="col-lg-10">
+	      <div class="col-lg-8">
 	        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
 	      </div>
 	    </div>
 	      <div class="form-group">
 	      <label for="inputName" class="col-lg-2 control-label">이름</label>
-	      <div class="col-lg-10">
+	      <div class="col-lg-8">
 	        <input type="text" class="form-control" id="inputName" placeholder="Name">
 	      </div>
 	    </div>
 	    <div class="form-group">
-	      <div class="col-lg-10 col-lg-offset-2">
+	      <div class="col-lg-8 col-lg-offset-2">
 	        <button type="reset" class="btn btn-default">취소</button>
 	        <button type="submit" class="btn btn-primary">확인</button>
 	      </div>
