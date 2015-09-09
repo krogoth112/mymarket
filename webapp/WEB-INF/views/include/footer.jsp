@@ -1,3 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-		<p>(c)opyright 2014 </p>
+
+<p>Copyright © 2015 Apple Inc. 모든 권리 보유 </p>
