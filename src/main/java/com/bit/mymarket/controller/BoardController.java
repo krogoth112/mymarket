@@ -134,29 +134,9 @@ public class BoardController {
 		return "redirect:/board/1";
 
 	}
-
-	/*
-	 * @RequestMapping("/view/{no}") public String view(@PathVariable Long no,
-	 * Model model, HttpSession session) { System.out.println("!!!!!!!!view");
-	 * UserVo authUser = (UserVo) session.getAttribute("authUser"); if (authUser
-	 * == null) return "redirect:/user/loginform"; BoardVo currentboard =
-	 * boardService.get(no); if (currentboard.getUserNo() != authUser.getNo()) {
-	 * System.out.println("뷰 카운트를 올리자!!!!"); boardService.viewcnt(no); }
-	 * 
-	 * model.addAttribute("vo", boardService.view(no));
-	 * model.addAttribute("replyList", boardService.getReplyList(no));
-	 * 
-	 * return "/board/view"; }
-	 */
 	@RequestMapping("/view/{no}")
-	public ModelAndView view(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/sample/boardDetail");
-	     
-	    Map<String,Object> map = boardService.selectBoardDetail(commandMap.getMap());
-	    mv.addObject("map", map.get("map"));
-	    mv.addObject("list", map.get("list"));
-		
-		/*System.out.println("!!!!!!!!view");
+	public String view(@PathVariable Long no, Model model, HttpSession session) {
+		System.out.println("!!!!!!!!view");
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		if (authUser == null)
 			return "redirect:/user/loginform";
@@ -165,13 +145,53 @@ public class BoardController {
 			System.out.println("뷰 카운트를 올리자!!!!");
 			boardService.viewcnt(no);
 		}
-		
-
+		boardService.viewcnt(no);
 		model.addAttribute("vo", boardService.view(no));
 		model.addAttribute("replyList", boardService.getReplyList(no));
-*/
-		return mv;
+
+		return "/board/view";
 	}
+
+	/*@RequestMapping("/view/{no}")
+	public String view(@PathVariable Long no, Model model, HttpSession session) {
+		System.out.println("!!!!!!!!view");
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		if (authUser == null)
+			return "redirect:/user/loginform";
+		BoardVo currentboard = boardService.get(no);
+		if (currentboard.getUserNo() != authUser.getNo()) {
+			System.out.println("뷰 카운트를 올리자!!!!");
+			boardService.viewcnt(no);
+		}
+		boardService.viewcnt(no);
+		model.addAttribute("vo", boardService.view(no));
+		model.addAttribute("replyList", boardService.getReplyList(no));
+
+		return "/board/view";
+	}*/
+
+	/*
+	 * @RequestMapping("/view/{no}") public ModelAndView view(CommandMap
+	 * commandMap) throws Exception { ModelAndView mv = new
+	 * ModelAndView("/board/view");
+	 * 
+	 * Map<String,Object> map =
+	 * boardService.selectBoardDetail(commandMap.getMap());
+	 * mv.addObject("boardvo", map.get("map")); mv.addObject("list",
+	 * map.get("list"));
+	 * 
+	 * System.out.println("!!!!!!!!view"); UserVo authUser = (UserVo)
+	 * session.getAttribute("authUser"); if (authUser == null) return
+	 * "redirect:/user/loginform"; BoardVo currentboard = boardService.get(no);
+	 * if (currentboard.getUserNo() != authUser.getNo()) {
+	 * System.out.println("뷰 카운트를 올리자!!!!"); boardService.viewcnt(no); }
+	 * 
+	 * 
+	 * model.addAttribute("vo", boardService.view(no));
+	 * model.addAttribute("replyList", boardService.getReplyList(no));
+	 * 
+	 * return mv; }
+	 */
 
 	@RequestMapping("/addreply/{no}")
 	public String addReply(@PathVariable Long no,

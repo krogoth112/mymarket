@@ -22,7 +22,6 @@
 		LIKE '%' ||#kwd# || '%' order by no desc ]]> </select> -->
 	<select id="list" resultMap="resultMapList">
 		<![CDATA[
-		
 			SELECT NO, TITLE,content, TO_CHAR(reg_date, 'HH12:MI') as reg_date, VIEW_COUNT, User_no, USER_NAME, reply_count 
 			FROM BOARD_COMMNITY
 			order by no desc
@@ -107,7 +106,8 @@
 			) 
 		]]>
 	</insert>
-	<select id="selectFileList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	<select id="selectFileList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
     <![CDATA[
         SELECT
             NO,

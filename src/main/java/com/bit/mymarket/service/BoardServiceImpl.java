@@ -160,10 +160,10 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.updateHitCnt(map);
 	    Map<String, Object> resultMap = new HashMap<String,Object>();
 	    Map<String, Object> tempMap = boardDao.selectBoardDetail(map);
-	    resultMap.put("map", tempMap);
+	    resultMap.put("boardvo", tempMap);
 	     
 	    List<Map<String,Object>> list = boardDao.selectFileList(map);
-	    resultMap.put("list", list);
+	    resultMap.put("filelist", list);
 	     
 	    return resultMap;
 	}
