@@ -7,14 +7,17 @@
 #site-introduction p			{ clear:both; font-size:1.1em; padding:20px; line-height:1.5em }
 
 /* header css */
-.navbar-brand #my {color:#ff0000; font-weight:bold }
+.navbar-brand #my          { color:#ff0000; font-weight:bold }
 
 
 /* side css */
-div.side { width:29.7%;height:900px;background-color:#E3E3E3;padding-top:0px }
+div#side                   { width:29.7%;height:928px;background-color:#E3E3E3;margin-left:0px;margin-top:50px}
 
 /* joinform */
-body.joinform .container  {padding-top:180px; width:700px}
+body.joinform .container   { padding-top:180px; width:700px}
 
 /* loginform */
-body.loginform .container  {padding-top:250px; width:700px}
+body.loginform .container  { padding-top:250px; width:700px}
+
+/* login */
+div#main                   
