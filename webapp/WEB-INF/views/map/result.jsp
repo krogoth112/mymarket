@@ -12,7 +12,7 @@
 	<h1>Upload completed</h1>
 
 	<div class="result-images">
-		<input type="text" value="${productImageUrl1 }">
+		<input type="text" value="${productImageUrl1 }" width="300px">
 		<c:if test="${not empty productImageUrl1 }">
 			<img src="/mymarket/${productImageUrl1 }" style="width:150px"><br>
 		</c:if>

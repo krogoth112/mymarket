@@ -1,7 +1,6 @@
 package com.bit.mymarket.controller;
 
 import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bit.mymarket.vo.MapVo;
+
 @RequestMapping( "/map" )
 @Controller
 public class MapController {
@@ -25,7 +26,7 @@ public class MapController {
 		return "/map/mapinsert";
 	}
 	
-	
+	 
 	
 	@RequestMapping( "/mapinsert/{lat}/{lng}/{no}" )
 	@ResponseBody
@@ -56,9 +57,29 @@ public class MapController {
 		}
 		System.out.println("mapinsertview");
 		System.out.println(lat + lng);
+		String latlng = lat + "," + lng;
+		//System.out.println(latlng);
+		model.addAttribute("latlng", latlng);
+		
+		return "map/mapinsertview";
+	}
+	
+	@RequestMapping( "/upload1" )
+	@ResponseBody
+	public String upload(MapVo mapVo) {
+		System.out.println(mapVo);
+		//System.out.println("mapinsertview : " + lat + " : " + lng);
+		//System.out.println(lat.equals(" "));
+		//System.out.println(lng.equals(""));
+		/*if(lng == "" || lat == ""){
+			 
+			return "/map/mapinsert";
+		}
+		System.out.println("mapinsertview");
+		System.out.println(lat + lng);
 		
 		model.addAttribute("lat", lat);
-		model.addAttribute("lng", lng);
+		model.addAttribute("lng", lng);*/
 		
 		return "map/mapinsertview";
 	}
@@ -133,8 +154,9 @@ public class MapController {
 			@RequestParam( "file1" ) MultipartFile file1, 
 			@RequestParam( "file2" ) MultipartFile file2,
 			@RequestParam( "file3" ) MultipartFile file3,
-			Model model ) {
-        
+			Model model, MapVo mapVo ) {
+        System.out.println(mapVo);
+        System.out.println("file1:" + file1);
 		// 단순 파라미터 값
 		LOG.debug( " ######## email : " + email );
 
@@ -207,10 +229,13 @@ public class MapController {
 				
 				
 		
-        return "map/result";
+        return "map/mapinsertview";
 	}
 	
 	private void writeFile( MultipartFile file, String path, String fileName ) {
+		System.out.println(path);
+		System.out.println(fileName);
+		System.out.println(path + "\\" + fileName);
 		FileOutputStream fos = null;
 		try {
 			byte fileData[] = file.getBytes();
