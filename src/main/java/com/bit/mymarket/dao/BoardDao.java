@@ -126,9 +126,13 @@ public class BoardDao {
 		// TODO Auto-generated method stub
 		
 	}
+//	@SuppressWarnings("unchecked")
+//	public List<Map<String, Object>> selectFileList(Map<String, Object> map) throws Exception{
+//	    return (List<Map<String, Object>>)sqlMapClientTemplate.queryForList("board.selectFileList", map);
+//	}
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectFileList(Map<String, Object> map) throws Exception{
-	    return (List<Map<String, Object>>)sqlMapClientTemplate.queryForList("board.selectFileList", map);
+	public List<Map<String, Object>> selectFileList(Long no) throws Exception{
+		return (List<Map<String, Object>>)sqlMapClientTemplate.queryForList("board.selectFileList", no);
 	}
 
 	public Map<String, Object> selectBoardDetail(Map<String, Object> map) {

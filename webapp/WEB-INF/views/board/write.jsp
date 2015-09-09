@@ -73,6 +73,8 @@
 			<tbody>
 				<tr>
 					<th scope="row">제목</th>
+					<input type="hidden" name="userNo" value="${authUser.no }">
+					<input type="hidden" name="userName" value="${authUser.name }">
 					<td><input type="text" id="title" name="title" class="wdp_90"></input></td>
 				</tr>
 				<tr>
@@ -81,37 +83,53 @@
 				</tr>
 			</tbody>
 		</table>
-		<input type="file" name="file">
-		<br/><br/>
-		<a href="#this" class="btn" id="write">작성하기</a> <a href="#this"
-			class="btn" id="list">목록으로</a>
+		<input type="file" name="file"> <br />
+		<br /> <a href="#this" class="btn" id="write">작성하기</a> <a href="#this"
+			class="btn" id="list">목록으로</a> <a href="#this" class="btn"
+			id="addFile">파일 추가</a>
 	</form>
 
 	<%@ include file="/WEB-INF/views/include/include-body.jspf"%>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#list").on("click", function(e){ //목록으로 버튼
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#list").on("click", function(e) { //목록으로 버튼
+				e.preventDefault();
+				fn_openBoardList();
+			});
+
+			$("#write").on("click", function(e) { //작성하기 버튼
+				e.preventDefault();
+				fn_insertBoard();
+			});
+			$("#addFile").on("click", function(e){ //파일 추가 버튼
                 e.preventDefault();
-                fn_openBoardList();
+                fn_addFile();
             });
-             
-            $("#write").on("click", function(e){ //작성하기 버튼
+		});
+
+		function fn_openBoardList() {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/board/view/1'/>");
+			comSubmit.submit();
+		}
+
+		function fn_insertBoard() {
+			var comSubmit = new ComSubmit("frm");
+			comSubmit.setUrl("<c:url value='/board/write/' />");
+			comSubmit.submit();
+		}
+		function fn_addFile(){
+            var str = "<p><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='delete'>삭제</a></p>";
+            $("#fileDiv").append(str);
+            $("a[name='delete']").on("click", function(e){ //삭제 버튼
                 e.preventDefault();
-                fn_insertBoard();
+                fn_deleteFile($(this));
             });
-        });
-         
-        function fn_openBoardList(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/board/view/1'/>");
-            comSubmit.submit();
         }
          
-        function fn_insertBoard(){
-            var comSubmit = new ComSubmit("frm");
-            comSubmit.setUrl("<c:url value='/board/write/' />");
-            comSubmit.submit();
+        function fn_deleteFile(obj){
+            obj.parent().remove();
         }
-    </script>
+	</script>
 </body>
 </html>

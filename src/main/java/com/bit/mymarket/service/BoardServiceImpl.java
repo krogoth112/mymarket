@@ -126,47 +126,52 @@ public class BoardServiceImpl implements BoardService {
 		return null;
 	}
 
-	/*@Override
+	/*
+	 * @Override public void insertBoard(Map<String, Object> map,
+	 * HttpServletRequest request) throws Exception { boardDao.insertBoard(map);
+	 * 
+	 * MultipartHttpServletRequest multipartHttpServletRequest =
+	 * (MultipartHttpServletRequest) request; Iterator<String> iterator =
+	 * multipartHttpServletRequest.getFileNames(); MultipartFile multipartFile =
+	 * null; while (iterator.hasNext()) { multipartFile =
+	 * multipartHttpServletRequest .getFile(iterator.next()); if
+	 * (multipartFile.isEmpty() == false) {
+	 * LOG.debug("------------- file start -------------"); LOG.debug("name : "
+	 * + multipartFile.getName()); LOG.debug("filename : " +
+	 * multipartFile.getOriginalFilename()); LOG.debug("size : " +
+	 * multipartFile.getSize());
+	 * LOG.debug("-------------- file end --------------\n"); } } }
+	 */
+	@Override
 	public void insertBoard(Map<String, Object> map, HttpServletRequest request)
 			throws Exception {
 		boardDao.insertBoard(map);
 
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		MultipartFile multipartFile = null;
-		while (iterator.hasNext()) {
-			multipartFile = multipartHttpServletRequest
-					.getFile(iterator.next());
-			if (multipartFile.isEmpty() == false) {
-				LOG.debug("------------- file start -------------");
-				LOG.debug("name : " + multipartFile.getName());
-				LOG.debug("filename : " + multipartFile.getOriginalFilename());
-				LOG.debug("size : " + multipartFile.getSize());
-				LOG.debug("-------------- file end --------------\n");
-			}
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(map,
+				request);
+		for (int i = 0, size = list.size(); i < size; i++) {
+			boardDao.insertFile(list.get(i));
 		}
-	}*/
-	@Override
-    public void insertBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
-        boardDao.insertBoard(map);
-         
-        List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
-        for(int i=0, size=list.size(); i<size; i++){
-        	boardDao.insertFile(list.get(i));
-        }
-    }
-
-	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-		boardDao.updateHitCnt(map);
-	    Map<String, Object> resultMap = new HashMap<String,Object>();
-	    Map<String, Object> tempMap = boardDao.selectBoardDetail(map);
-	    resultMap.put("boardvo", tempMap);
-	     
-	    List<Map<String,Object>> list = boardDao.selectFileList(map);
-	    resultMap.put("filelist", list);
-	     
-	    return resultMap;
 	}
-	
+
+	/*public Map<String, Object> selectBoardDetail(Map<String, Object> map)
+			throws Exception {
+		boardDao.updateHitCnt(map);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> tempMap = boardDao.selectBoardDetail(map);
+		resultMap.put("boardvo", tempMap);
+
+		List<Map<String, Object>> list = boardDao.selectFileList(map);
+		resultMap.put("filelist", list);
+
+		return resultMap;
+	}*/
+
+	public Map<String, Object> fileList(Long no) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String,Object>();
+		List<Map<String,Object>> list = (List<Map<String, Object>>) boardDao.selectFileList(no); 
+		resultMap.put("fileList", list);
+		return resultMap;
+	}
 
 }

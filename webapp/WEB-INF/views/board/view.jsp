@@ -133,10 +133,12 @@
 			<tr>
 				<th scope="row">첨부파일</th>
 				<td colspan="3">
-				<c:forEach var="row" items="${list }">
+				<c:forEach var="row" items="${fileList }">
 						<input type="hidden" id="no" value="${row.no }">
 						<a href="#this" name="file">${row.ORIGINAL_FILE_NAME }</a> 
                         (${row.FILE_SIZE }kb)
+                        
+                       <img src="/images/${row.STORED_FILE_NAME}" width="100px" height="100px">
                 </c:forEach></td>
 			</tr>
 		</tbody>
@@ -184,7 +186,7 @@
 		</table>
 	</form>
 
-
+ 
 	<a href="/board/1" class="btn">목록으로</a>
 	<!-- <a href="/board/1" class="btn" id="list">목록으로</a> -->
 	<a href="#this" class="btn" id="update">수정하기</a>
@@ -204,6 +206,7 @@
 
 			$("a[name='file']").on("click", function(e) { //파일 이름
 				e.preventDefault();
+				 fn_downloadFile($(this));
 			});
 		});
 
@@ -220,6 +223,13 @@
 			comSubmit.addParam("no", no);
 			comSubmit.submit();
 		}
+		function fn_downloadFile(obj){
+	        var idx = obj.parent().find("#IDX").val();
+	        var comSubmit = new ComSubmit();
+	        comSubmit.setUrl("<c:url value='/common/downloadFile.do' />");
+	        comSubmit.addParam("IDX", idx);
+	        comSubmit.submit();
+	    }
 	</script>
 
 </body>
