@@ -94,7 +94,7 @@ public class BoardController {
 		BoardVo boardVo = new BoardVo();
 
 		boardVo.setUserNo(authUser.getNo());
-		boardVo.setUserName(authUser.getname());
+		boardVo.setUserName(authUser.getName());
 		boardVo.setContent(content);
 		boardVo.setTitle(title);
 		boardService.write(boardVo);
@@ -142,7 +142,7 @@ public class BoardController {
 		System.out.println((UserVo) session.getAttribute("authUser"));
 		UserVo userVo = (UserVo) session.getAttribute("authUser");
 		ReplyVo vo = new ReplyVo();
-		vo.setUserName(userVo.getname());
+		vo.setUserName(userVo.getName());
 		vo.setContent(content);
 		vo.setBoardNo(no);
 		vo.setUserNo(userVo.getNo());
