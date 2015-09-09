@@ -2,28 +2,33 @@ package com.bit.mymarket.vo;
 
 public class UserVo {
 	private Long no;
-	private String phoneNumber;
+	private String idNo;
 	private String name;
 	private String email;
 	private String password;
+	private String birth;
 	private String gender;
+	private String phone;
 	private String memberType;
+	private String wishItem;
+	private String regDate;
+	
 	public Long getNo() {
 		return no;
 	}
 	public void setNo(Long no) {
 		this.no = no;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getIdNo() {
+		return idNo;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setIdNo(String idNo) {
+		this.idNo = idNo;
 	}
-	public String getname() {
+	public String getName() {
 		return name;
 	}
-	public void setname(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	public String getEmail() {
@@ -38,11 +43,23 @@ public class UserVo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
 	public String getGender() {
 		return gender;
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getMemberType() {
 		return memberType;
@@ -50,14 +67,26 @@ public class UserVo {
 	public void setMemberType(String memberType) {
 		this.memberType = memberType;
 	}
+	public String getWishItem() {
+		return wishItem;
+	}
+	public void setWishItem(String wishItem) {
+		this.wishItem = wishItem;
+	}
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
 	@Override
 	public String toString() {
-		return "UserVo [no=" + no + ", phoneNumber=" + phoneNumber
-				+ ", name=" + name + ", email=" + email + ", password="
-				+ password + ", gender=" + gender + ", memberType="
-				+ memberType + "]";
+		return "TestVo [no=" + no + ", idNo=" + idNo + ", name=" + name
+				+ ", email=" + email + ", password=" + password + ", birth="
+				+ birth + ", gender=" + gender + ", phone=" + phone
+				+ ", memberType=" + memberType + ", wishItem=" + wishItem
+				+ ", regDate=" + regDate + "]";
 	}
-	
 	
 	
 

@@ -14,24 +14,21 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
+	
+	public UserVo getByIdNo(String idNo){
+		UserVo userVo = userDao.getByIdNo(idNo);
+		return userVo;
+	}
 	public void join(UserVo userVo) {
-		userDao.insert(userVo);
+		userDao.insertJoin(userVo);
+	}
+	
+	public UserVo getLoginInfo(UserVo vo){
+		UserVo userVo = userDao.getLoginInfo(vo);
+		return userVo;
 	}
 
-	public UserVo login(UserVo userVo) {
-		System.out.println("before UserService : " + userVo);
-		UserVo vo = userDao.get(userVo);
-		System.out.println("after UserService : " + vo);
-		return vo;
-	}
-
-	public void update(UserVo userVo) {
-		userDao.update(userVo);
-		
-	}
-	public String getByEmail(String email){
-		return userDao.getByEmail(email);
-	}
+	
 	
 
 }

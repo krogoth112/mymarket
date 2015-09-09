@@ -2,8 +2,74 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>main view</title>
+<meta charset="UTF-8">
+</head>
+<script src="/assets/js/jquery-1.11.3.js"></script>
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+      
+    } else if (response.status === 'not_authorized') {
+      
+    } else {
+      
+    }
+  }
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+    	  loginSuccess();
+    	  statusChangeCallback(response);
+    });
+  }
+ 
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      :'986739934701573',
+    cookie     : true,  // 쿠키가 세션을 참조할 수 있도록 허용
+    xfbml      : true,  // 소셜 플러그인이 있으면 처리
+    version    : 'v2.1' // 버전 2.1 사용
+  });
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+ 
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function loginSuccess() {
+    FB.api('/me', function(response) {
+    	var path="http://www.mysungmin.com/user/loginBySns";
+    	var name = response.name;
+    	var idNo = response.id;
+    	var method="post";
+    	post_to_url(path,name,idNo,null,null,method);
+    });
+  }
+  
+  function logout(){
+	  FB.logout(function(response){});
+  }
+</script>
+<body>
+</body>
+</html>
 
 <nav class="navbar navbar-default navbar-fixed-top" >
+
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -43,9 +109,21 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">로그아웃 <span class="sr-only">(current)</span></a></li>
+      <c:choose>
+      <c:when test="${empty authUser }">
+      	<li><a href="/user/loginform">로그인 <span class="sr-only">(current)</span></a></li>
+      	<li><a href="/face.jsp">SNS 로그인 <span class="sr-only">(current)</span></a></li>
+      </c:when>
+      <c:otherwise>
+        <li><a href="/user/logout" onclick="logout();" id="revokeSession">
+        	로그아웃
+       		<iframe id="logoutframe" src="https://accounts.google.com/logout" style="display: none"></iframe>
+         <span class="sr-only">(current)</span></a></li>
+      </c:otherwise>
+       </c:choose>
         <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
         <li><a href="#">상품등록</a></li>
+     
       </ul>
     </div>
   </div>
