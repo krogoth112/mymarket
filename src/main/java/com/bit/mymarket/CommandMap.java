@@ -5,6 +5,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+/**
+ * 
+ * request에 담겨있는 파라미터를 Map에 담아주는 역할을 하는 클래스
+ * 
+ * 
+ * @author "krogoth112"
+ * 
+ *
+ */
 public class CommandMap {
 	Map<String, Object> map = new HashMap<String, Object>();
 

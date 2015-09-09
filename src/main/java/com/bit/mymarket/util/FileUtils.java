@@ -13,6 +13,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+
+/**
+ * @author "krogoth112"
+ *
+ */
 @Component("fileUtils")
 public class FileUtils {
    private static final String filePath = "C:\\temp\\"; // 파일이 저장될 위치

@@ -5,13 +5,6 @@ public class BoardVo {
 	private Long no;
 	private String title;
 	private String content;
-/*
-	private String WISH_ITEM_TAG;
-	private String trade_category;
-	private String item_condition;
-	private Integer price;
-	private String location;
-*/
 	private Long userNo;
 	private String userName;
 	private Long viewCnt;
