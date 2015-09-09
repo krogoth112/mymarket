@@ -9,7 +9,7 @@ import com.bit.mymarket.vo.UserVo;
 
 
 @Service
-public class UserService {
+public class UserServiceImpl {
 
 	@Autowired
 	private UserDao userDao;

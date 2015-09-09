@@ -163,4 +163,33 @@ INSERT INTO REPLY (NO,
          DEPTH
     FROM REPLY
 ORDER BY group_no ASC, order_no ASC;
+ALTER TABLE BOARD_COMMNITY
+   ADD (REPLY_COUNT NUMBER (5) DEFAULT 0);
+
+SELECT *
+  FROM BOARD_COMMNITY b;
+
+INSERT INTO BOARD_COMMNITY (NO,
+                            TITLE,
+                            CONTENT,
+                            REG_DATE,
+                            VIEW_COUNT,
+                            USER_NO,
+                            USER_NAME,
+                            REPLY_COUNT)
+     VALUES (no,
+             'title',
+             'content',
+             reg_date,
+             view_count,
+             user_no,
+             'user_name',
+             reply_count);
+ALTER TABLE BOARD_COMMNITY_PIC
+ADD (ORIGINAL_FILE_NAME VARCHAR2(260 BYTE) NOT NULL,
+  STORED_FILE_NAME VARCHAR2(36 BYTE) NOT NULL);
+ALTER TABLE BOARD_COMMNITY_PIC
+ADD (DEL_GB VARCHAR2(1 BYTE) DEFAULT 'N' NOT NULL);
+ALTER TABLE BOARD_COMMNITY_PIC
+ADD (FILE_SIZE number);
 

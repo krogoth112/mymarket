@@ -67,7 +67,7 @@
 	<![CDATA[ UPDATE BOARD_COMMNITY SET title=#title#, content=#content# 
 		WHERE no=#no# ]]>
 	</update>
-	
+
 	<update id="replycount" parameterClass="java.lang.Long"> 
 		<![CDATA[ 
 			UPDATE BOARD_COMMNITY
@@ -82,5 +82,46 @@
 		where no=#no# 
 	]]>
 	</select>
+
+	<insert id="insertBoard" parameterClass="java.util.HashMap">
+	<![CDATA[ 
+			insert into BOARD_COMMNITY (NO, TITLE, CONTENT, user_NO, user_NAME, REG_DATE) 
+			VALUES (SEQ_BOARD_COMMNITY.nextval, #title# , #content#, #userNo#, #userName#, sysdate)
+		]]>
+	</insert>
+	<insert id="insertFile" parameterClass="java.util.HashMap">
+		<selectKey keyProperty="board_no" resultClass="java.lang.Long"> 
+			<![CDATA[ 
+				select max(no) from BOARD_COMMNITY 
+			]]>
+		</selectKey>
+
+		<![CDATA[
+			insert into BOARD_COMMNITY_PIC 
+			(
+				NO, board_no, ORIGINAL_FILE_NAME, STORED_FILE_NAME, FILE_SIZE
+			) 
+			VALUES
+			(
+				seq_BOARD_COMMNITY_PIC.nextval, #board_no#, #ORIGINAL_FILE_NAME#, #STORED_FILE_NAME#, #FILE_SIZE#
+			) 
+		]]>
+	</insert>
+	<select id="selectFileList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <![CDATA[
+        SELECT
+            NO,
+            ORIGINAL_FILE_NAME,
+            ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+        FROM
+            BOARD_COMMNITY_PIC
+        WHERE
+            board_no = #board_no#
+            AND DEL_GB = 'N'
+    ]]>
+	</select>
+
+
+
 </sqlMap>
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bit.mymarket.service.UserService;
+import com.bit.mymarket.service.UserServiceImpl;
 import com.bit.mymarket.vo.UserVo;
 
 
@@ -22,7 +22,7 @@ import com.bit.mymarket.vo.UserVo;
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 
 	@RequestMapping("/joinform")
 	public String joinform() {
