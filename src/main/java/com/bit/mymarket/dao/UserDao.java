@@ -12,18 +12,41 @@ public class UserDao {
 	@Autowired
 	private SqlMapClientTemplate sqlMapClientTemplate;
 
-	public UserVo getByIdNo(String idNo){
-		UserVo userVo = (UserVo)sqlMapClientTemplate.queryForObject("user.getByIdNo", idNo);
-		return userVo;
+	public UserVo get(String no) {
+
+		UserVo vo = (UserVo) sqlMapClientTemplate.queryForObject(
+				"guestbook.getvon", no);
+
+		return vo;
 	}
-	
-	public void insertJoin(UserVo vo){
-		sqlMapClientTemplate.insert("user.join", vo);
+
+	public UserVo get(UserVo userVo) {
+
+		/*java.util.HashMap<String, String> map = new java.util.HashMap<String, String>(
+				2);
+		map.put("email", phoneNumber);
+		map.put("password", password);*/
+		UserVo vo = (UserVo) sqlMapClientTemplate.queryForObject(
+				"user.login", userVo);
+
+		return vo;
+
 	}
-	
-	public UserVo getLoginInfo(UserVo vo){
-		UserVo userVo = (UserVo)sqlMapClientTemplate.queryForObject("user.login", vo);
-		return userVo;
+	public String getByEmail(String email) {
 		
+		return (String) sqlMapClientTemplate.queryForObject("user.getbyemail", email);
 	}
+	
+
+	// insert
+	public void insert(UserVo vo){
+		sqlMapClientTemplate.insert("user.insert", vo);
+	}
+
+	// update
+	public void update(UserVo vo){
+		sqlMapClientTemplate.update("user.update", vo);
+
+	}
+
 }
